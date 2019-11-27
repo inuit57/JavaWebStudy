@@ -2,11 +2,11 @@ package Calc;
 
 public class Calculator {
 
-	static int num1 ; //°ªÀ» ±â¾ïÇÏµµ·Ï ÇÏ±â À§ÇØ¼­ staticÀ¸·Î ¼³Á¤
-	static int num2 ; 
-	static char cal_ch; 
+	static private int num1 ; //ê°’ì„ ê¸°ì–µí•˜ë„ë¡ í•˜ê¸° ìœ„í•´ì„œ staticìœ¼ë¡œ ì„¤ì •
+	static private int num2 ; 
+	static private char cal_ch; 
 	
-	static int cnt = 0 ; 
+	static private int cnt = 0 ; 
 	
 	public void cnt_inc() {
 		++cnt;  
@@ -21,7 +21,7 @@ public class Calculator {
 	
 	public void setValues(String str) {
 		String tmp_str = str; // inputArea.getText(); 
-		tmp_str = tmp_str.substring(0, tmp_str.length()-1); //¸¶Áö¸· ¿£ÅÍ Á¦°Å
+		tmp_str = tmp_str.substring(0, tmp_str.length()-1); //ë§ˆì§€ë§‰ ì—”í„° ì œê±°
 		
 		
 		switch(cnt) {
@@ -51,7 +51,7 @@ public class Calculator {
 		try {
 			num1 = Integer.parseInt(str);
 		}catch(NumberFormatException e) {
-			System.err.println("¼ýÀÚ°¡ ¾Æ´Ñ °ªÀ» ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
+			System.err.println("ìˆ«ìžê°€ ì•„ë‹Œ ê°’ì„ ìž…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
 		}
 	}
 	
@@ -59,13 +59,13 @@ public class Calculator {
 		try {
 			num2 = Integer.parseInt(str); 
 		}catch(NumberFormatException e) {
-			System.err.println("¼ýÀÚ°¡ ¾Æ´Ñ °ªÀ» ÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.");
+			System.err.println("ìˆ«ìžê°€ ì•„ë‹Œ ê°’ì„ ìž…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.");
 		}
 		
 	}
 	
 	public void setCal_ch(String str) {
-		if(str.length() > 1) { cal_ch = '?';} //»çÄ¢¿¬»ê ±âÈ£°¡ ¾Æ´Ñ °æ¿ì.
+		if(str.length() > 1) { cal_ch = '?';} //ì‚¬ì¹™ì—°ì‚° ê¸°í˜¸ê°€ ì•„ë‹Œ ê²½ìš°.
 		else { cal_ch = str.charAt(0); }
 	}
 }
