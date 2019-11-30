@@ -2,9 +2,9 @@ package Calc;
 
 public class Calculator {
 
-	static private int num1 ; //값을 기억하도록 하기 위해서 static으로 설정
-	static private int num2 ; 
-	static private char cal_ch; 
+	private int num1 ; 
+	private int num2 ; 
+	private char cal_ch; //연산자
 	
 	static private int cnt = 0 ; 
 	
@@ -19,15 +19,15 @@ public class Calculator {
 		return cnt;
 	}
 	
-	public void setValues(String str) {
-		String tmp_str = str; // inputArea.getText(); 
-		tmp_str = tmp_str.substring(0, tmp_str.length()-1); //마지막 엔터 제거
+	public void setValues(String str) { 
 		
-		
+		if(str.charAt(str.length()-1) == '\n') //마지막이 개행문자라면 
+			str = str.substring(0, str.length()-1); //개행문자를 지워준다.
+
 		switch(cnt) {
-			case 1 : setNum1(tmp_str); break;
-			case 2 : setCal_ch(tmp_str);break;
-			case 3 : setNum2(tmp_str);break;
+			case 1 : setNum1(str); break;
+			case 2 : setCal_ch(str);break;
+			case 3 : setNum2(str);break;
 			default : cnt = 0 ; 
 		}
 	}
@@ -50,8 +50,8 @@ public class Calculator {
 	public void setNum1(String str) {
 		try {
 			num1 = Integer.parseInt(str);
-		}catch(NumberFormatException e) {
-			System.err.println("숫자가 아닌 값을 입력하셨습니다.");
+		}catch(NumberFormatException e) { //Integer.parseInt()가 실패할 경우.
+			System.err.println("숫자를 입력해주세요.");
 		}
 	}
 	
@@ -59,13 +59,13 @@ public class Calculator {
 		try {
 			num2 = Integer.parseInt(str); 
 		}catch(NumberFormatException e) {
-			System.err.println("숫자가 아닌 값을 입력하셨습니다.");
+			System.err.println("숫자를 입력해주세요.");
 		}
 		
 	}
 	
 	public void setCal_ch(String str) {
-		if(str.length() > 1) { cal_ch = '?';} //사칙연산 기호가 아닌 경우.
+		if(str.length() > 1) { cal_ch = '?';} //
 		else { cal_ch = str.charAt(0); }
 	}
 }

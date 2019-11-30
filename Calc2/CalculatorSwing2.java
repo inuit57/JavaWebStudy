@@ -1,4 +1,4 @@
-package Calc;
+package Calc2;
 
 import java.awt.BorderLayout;
 import java.awt.event.KeyEvent;
@@ -10,15 +10,15 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 
-public class CalculatorSwing extends JFrame implements KeyListener{
+public class CalculatorSwing2 extends JFrame implements KeyListener{
 	
 	JPanel mainPanel;
 	JTextArea inputArea;
 	JLabel inputLabel,explainLabel;
 	
-	Calculator MyCal = new Calculator(); 
+	Calculator2 cal2 = new Calculator2(); 
 	
-	public CalculatorSwing() {
+	public CalculatorSwing2() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -30,7 +30,7 @@ public class CalculatorSwing extends JFrame implements KeyListener{
 		inputArea.setBorder(new TitledBorder("input"));
 		
 		
-		explainLabel = new JLabel("정수를 입력해주세요.",JLabel.RIGHT);
+		explainLabel = new JLabel("수식을 입력해주세요.",JLabel.RIGHT);
 		explainLabel.setBorder(new TitledBorder("explain"));
 		
 		mainPanel.add(inputArea,BorderLayout.NORTH);
@@ -52,7 +52,7 @@ public class CalculatorSwing extends JFrame implements KeyListener{
 	
 	public static void main(String[] arg) {
 		
-		CalculatorSwing cal2 = new CalculatorSwing();
+		CalculatorSwing2 cal2 = new CalculatorSwing2();
 		
 	}
 
@@ -64,24 +64,16 @@ public class CalculatorSwing extends JFrame implements KeyListener{
 		
 		char key = e.getKeyChar();
 		
-		if(key == 10) { //엔터 입력시
+		
+		if(key == 10) { // 
 			
-			MyCal.cnt_inc(); // cnt 증가시키기  
-			if(MyCal.getCnt()%2 !=1) {
-				explainLabel.setText("정수를 입력해주세요.");
-			}
-			else {
-				explainLabel.setText("연산자(+, -, *, /)를 입력해주세요.");
-			}
+			cal2.getInput(inputArea.getText());
 			
-			//값 넣어주기.
-			MyCal.setValues(inputArea.getText()); 
+			cal2.printArr();
 			
-			if(MyCal.getCnt() >=3) {
-				explainLabel.setText(MyCal.calculate()); //결과값 출력
-			}
-			
-			//explainLabel.setText(inputArea.getText());
+			//explainLabel.setText("test.");
+	
+			explainLabel.setText(cal2.doCalculate());
 			inputArea.setText("");
 			
 		}
@@ -94,6 +86,7 @@ public class CalculatorSwing extends JFrame implements KeyListener{
 		// TODO Auto-generated method stub
 		
 		//System.out.println("keyPressed");
+
 		
 	}
 
